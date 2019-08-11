@@ -38,14 +38,14 @@ function player(){
     if (ship.shipAccelX == 1){
         ship.shipAccelX = 1;
     }
-    if (ship.shipAccelX == -1.5){
-        ship.shipAccelX = -1.5;
+    if (ship.shipAccelX == -2.5){
+        ship.shipAccelX = -2.5;
     }
-    if (ship.shipAccelY == 1.5){
-        ship.shipAccelY = 1.5;
+    if (ship.shipAccelY == 2.5){
+        ship.shipAccelY = 2.5;
     }
-    if (ship.shipAccelY == -1.5){
-        ship.shipAccelY = -1.5;
+    if (ship.shipAccelY == -2.5){
+        ship.shipAccelY = -2.5;
     }
     ship.x+=ship.shipAccelX;
     ship.y+=ship.shipAccelY;
@@ -53,13 +53,18 @@ function player(){
     if(ship.x<=0){
         ship.shipAccelX=0;
         ship.x=0;
-    } else if(ship.x>=cavas.width-ship.lenth){
+    } 
+    if(ship.x>=750-ship.lenth){
         ship.x=750-ship.lenth;
+        ship.shipAccelX=0;
     }
         if(ship.y<=0){
+        ship.shipAccelY=0;
         ship.y=0;
-    } else if(ship.y>=600){
-        ship.y=600;
+    } 
+    if(ship.y>=600-ship.height){
+        ship.shipAccelY=0;
+        ship.y=600-ship.height;
     }
 }
 
