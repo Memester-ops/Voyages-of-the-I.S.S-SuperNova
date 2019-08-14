@@ -24,10 +24,10 @@ function player(){
     canvasContext.fillStyle = 'red';
     canvasContext.fillRect(ship.x,ship.y,ship.lenth,ship.height)
     if (controls.right){
-        ship.shipAccelX+=0.15;
+        ship.shipAccelX+=0.075;
     }
     if (controls.left){
-        ship.shipAccelX-=0.15;
+        ship.shipAccelX-=0.075;
     }
     if (controls.dowm){
         ship.shipAccelY+=0.15;
@@ -72,6 +72,7 @@ function player(){
 function animate() {
    background();
    player();
+    asteroids();
 }
 var controls;
 controls = {
