@@ -21,31 +21,35 @@ var ship;
 
 function player(){
     canvasContext.beginPath();
-    canvasContext.fillStyle = 'red';
+    canvasContext.fillStyle = 'white';
     canvasContext.fillRect(ship.x,ship.y,ship.lenth,ship.height)
     if (controls.right){
-        ship.shipAccelX+=0.075;
+        ship.shipAccelX+=0.045;
     }
     if (controls.left){
-        ship.shipAccelX-=0.075;
+        ship.shipAccelX-=0.045;
     }
     if (controls.dowm){
-        ship.shipAccelY+=0.15;
+        ship.shipAccelY+=0.0825;
     }
     if (controls.up){
-        ship.shipAccelY-=0.15;
+        ship.shipAccelY-=0.0825;
+    }
+    if (controls.brake){
+        ship.shipAccelX*=0.9;
+        ship.shipAccelY*=0.9;
     }
     if (ship.shipAccelX == 1){
         ship.shipAccelX = 1;
     }
-    if (ship.shipAccelX == -2.5){
-        ship.shipAccelX = -2.5;
+    if (ship.shipAccelX == -1){
+        ship.shipAccelX = -1;
     }
-    if (ship.shipAccelY == 2.5){
-        ship.shipAccelY = 2.5;
+    if (ship.shipAccelY == 1.5){
+        //ship.shipAccelY = 1.5;
     }
-    if (ship.shipAccelY == -2.5){
-        ship.shipAccelY = -2.5;
+    if (ship.shipAccelY == -1.5){
+        ship.shipAccelY = -1.5;
     }
     ship.x+=ship.shipAccelX;
     ship.y+=ship.shipAccelY;
@@ -67,12 +71,10 @@ function player(){
         ship.y=600-ship.height;
     }
 }
-
-
 function animate() {
    background();
-   player();
-    asteroids();
+   player();   
+   renderAsteroid();    
 }
 var controls;
 controls = {
@@ -80,6 +82,7 @@ controls = {
     down:false,
     right:false,
     left:false,
+    brake:false,
     keyListner:function(event){
         var keyState = (event.type =="keydown")?true:false;
         switch(event.keyCode){
@@ -95,8 +98,12 @@ controls = {
             case 39:
                 controls.right = keyState;
                 break;
+            case 32:
+                controls.brake = keyState;
+                break;
         }
     }
 };
+
 window.addEventListener("keydown",controls.keyListner)
 window.addEventListener("keyup",controls.keyListner);
