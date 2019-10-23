@@ -1,8 +1,9 @@
+var score = 0;
+
 var asteroids = [
     {"x":370,"y":-30,"w":30,"h":30},
     {"x":421,"y":-23,"w":30,"h":30},
     {"x":340,"y":-82,"w":30,"h":30},
-    {"x":1,"y":-12000,"w":3000,"h":3000},
     {"x":120,"y":-5,"w":30,"h":30}
 ]
 
@@ -23,7 +24,15 @@ function renderAsteroid() {
     var asteroidYvelocity = 1.8;
     for(var i = 0; i < asteroids.length; i++){
     canvasContext.fillStyle = "brown";
-    canvasContext.fillRect (asteroids[i].x,asteroids[i].y+=asteroidYvelocity, asteroids[i].w,asteroids[i].h);   
+    canvasContext.fillRect (asteroids[i].x,asteroids[i].y+=asteroidYvelocity, asteroids[i].w,asteroids[i].h);
+     
+        if(ship.x+ship.lenth>=asteroids[i].x-20
+       &&asteroids[i].x+50>=ship.x
+       &&ship.y+ship.height>=asteroids[i].y-20
+       &&asteroids[i].y+50>=ship.y
+       && shipCollided=="false"){
+            score+=1;
+        }
     
         //collision detection
     if(ship.x+ship.lenth>=asteroids[i].x
@@ -36,11 +45,9 @@ function renderAsteroid() {
         //destroy ship
         ship.height = 0;
         ship.lenth = 0;
-        //name the asteroid you crashed intov 13
-        
-           
+        //name the asteroid you crashed into
         var randomAsteroid = asteroidNames[Math.floor(Math.random() * asteroidNames.length)];
-        alert(randomAsteroid);
+        alert(score);
         shipCollided="true";
         }
     
@@ -50,3 +57,15 @@ function renderAsteroid() {
     }    
        
     }
+//win
+function win(){
+    var ceres={
+      height:10000,
+      width:10000,
+      x:0,
+      y:3000
+    };
+    
+    fillRect(ceres.x,ceres.y,ceres.height,ceres.width);
+    
+}

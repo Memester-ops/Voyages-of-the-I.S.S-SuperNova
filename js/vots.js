@@ -16,12 +16,13 @@ var ship;
     x:355,
     y:460,
     shipAccelX:0,
-    shipAccelY:0
+    shipAccelY:0,
+    colour:"white"
 };
 
 function player(){
     canvasContext.beginPath();
-    canvasContext.fillStyle = 'white';
+    canvasContext.fillStyle = ship.colour;
     canvasContext.fillRect(ship.x,ship.y,ship.lenth,ship.height)
     if (controls.right){
         ship.shipAccelX+=0.045;
@@ -75,6 +76,7 @@ function animate() {
    background();
    player();   
    renderAsteroid();    
+   scoreAdd();
 }
 var controls;
 controls = {
