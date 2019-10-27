@@ -2,9 +2,9 @@ window.onload = function () {
 
     canvas = document.getElementById("myCanvas");
     canvasContext = canvas.getContext('2d');
-    var frames = 60;
-    setInterval(animate,1000/frames);    
-}
+    var frames = 1000/60;
+    var animationInterval = setInterval(animate,frames);    
+    }
 function background(){
     canvasContext.fillStyle = 'black';
     canvasContext.fillRect(0,0, canvas.width, canvas.height);
@@ -17,13 +17,12 @@ var ship;
     y:460,
     shipAccelX:0,
     shipAccelY:0,
-    colour:"white"
 };
 
 function player(){
     canvasContext.beginPath();
-    canvasContext.fillStyle = ship.colour;
-    canvasContext.fillRect(ship.x,ship.y,ship.lenth,ship.height)
+    canvasContext.fillStyle = "white";
+    canvasContext.fillRect(ship.x,ship.y,ship.lenth,ship.height);
     if (controls.right){
         ship.shipAccelX+=0.045;
     }
@@ -77,6 +76,7 @@ function animate() {
    player();   
    renderAsteroid();    
    scoreAdd();
+   win();
 }
 var controls;
 controls = {

@@ -47,8 +47,11 @@ function renderAsteroid() {
         ship.lenth = 0;
         //name the asteroid you crashed into
         var randomAsteroid = asteroidNames[Math.floor(Math.random() * asteroidNames.length)];
+        document.getElementById("asteroidName").innerHTML = "you crashed into "+ randomAsteroid;
         alert(score);
         shipCollided="true";
+        document.getElementById("shipStatus").innerHTML = "Mission Failed!"; 
+
         }
     
     }
@@ -60,12 +63,16 @@ function renderAsteroid() {
 //win
 function win(){
     var ceres={
-      height:10000,
-      width:10000,
+      height:1000,
+      width:1000,
       x:0,
-      y:3000
+      y:-50
     };
     
     fillRect(ceres.x,ceres.y,ceres.height,ceres.width);
-    
+    ceres.y+=20;
+    if(ceres.y>=ship.y){
+    document.getElementById("shipStatus").innerHTML = "Mission Accomplished"; 
+
+    }
 }
